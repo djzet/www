@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bitrix API Documentation</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.48.0/swagger-ui.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.48.0/swagger-ui-bundle.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.48.0/swagger-ui-standalone-preset.js"> </script>
+</head>
+<body>
+  <div id="swagger-ui"></div>
+  <script>
+    window.onload = function() {
+      // Build a system
+      const ui = SwaggerUIBundle({
+        url: "/local/swagger/swagger.json", // путь к вашему файлу OpenAPI
+        dom_id: '#swagger-ui',
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        layout: "StandaloneLayout"
+      })
+      window.ui = ui
+    }
+  </script>
+</body>
+</html>

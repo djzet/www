@@ -1,0 +1,106 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Баланс и транзакции пользователя API",
+      "description": "API для просмотра баланса и транзакций пользователя.",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://192.168.0.13/local/api/"
+      }
+    ],
+    "paths": {
+      "/user/balance.php?userId={userId}": {
+        "get": {
+          "summary": "Получение баланса пользователя",
+          "description": "Получение баланса пользователя по ID",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "required": true,
+              "description": "ID пользователя",
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                      },
+                      "balance": {
+                        "type": "number",
+                        "format": "double"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/user/transaction.php?userId={userId}": {
+        "get": {
+          "summary": "Получение истории транзакций пользователя",
+          "description": "Получение истории транзакций пользователя по ID",
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "required": true,
+              "description": "ID пользователя",
+              "schema": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "transactionId": {
+                          "type": "integer",
+                          "format": "int64"
+                        },
+                        "timestamp": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "amount": {
+                          "type": "number",
+                          "format": "double"
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "Тип транзакции (e.g., \"Начисление\", \"Списание\")"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+}
